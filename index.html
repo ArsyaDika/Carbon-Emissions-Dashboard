@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carbon – rice emissions by village</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27%3E%3Ccircle cx=%278%27 cy=%278%27 r=%277%27 fill=%27%232e7d32%27/%3E%3C/svg%3E">
+<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<header class="hdr" id="hdr"></header>
+<nav class="rail" id="rail" aria-label="Main">
+  <button type="button" class="on" data-tab="dash"><i aria-hidden="true">▦</i>Dash</button>
+  <button type="button" data-tab="factors"><i aria-hidden="true">⚗</i>Factors</button>
+  <button type="button" data-tab="data"><i aria-hidden="true">ⓘ</i>Data</button>
+</nav>
+
+<aside class="drawer" id="drawer">
+  <section data-panel="factors" hidden>
+    <h3>Factors</h3>
+    <div class="panel fscen"><span class="seg" data-key="scenario" role="group" aria-label="Scenario"><button type="button" class="on" data-value="actual">Actual</button><button type="button" data-value="baseline">Baseline</button></span></div>
+    <div id="factors-root"></div>
+  </section>
+  <section data-panel="data" hidden>
+    <h3>Data</h3>
+    <div id="data-root"></div>
+  </section>
+</aside>
+
+<button type="button" id="btn-help" class="help" aria-label="Open guide" title="Guide">?</button>
+
+<main class="stage">
+  <div id="map"></div>
+
+  <div class="hud">
+  <div class="kpis" id="kpis">
+    <div class="k"><small>Farmers</small><b id="kpi-farmers">–</b></div>
+    <div class="k"><small>Total land area (ha)</small><b id="kpi-area">–</b></div>
+    <div class="k"><small>Avg yield (t/ha)</small><b id="kpi-yield">–</b></div>
+    <div class="k"><small>Total harvest (t)</small><b id="kpi-harvest">–</b></div>
+    <div class="k"><small>Total emissions (tCO2e)</small><b id="kpi-totalemission">–</b></div>
+    <div class="k"><small>Baseline emissions (tCO2e/ha)</small><b id="kpi-baseline">–</b></div>
+    <div class="k"><small>Actual emissions (tCO2e/ha)</small><b id="kpi-emission">–</b></div>
+    <div class="k"><small>Reduction vs baseline (tCO2e and %)</small><b id="kpi-reduction">–</b></div>
+  </div>
+    <div class="hud-row"><div class="tag" id="tagline"><em>Carbon</em> · See the paddies behind the numbers.</div><div class="leg" id="legend"></div></div>
+    <button type="button" id="btn-overview" class="btn" hidden>Back to overview</button>
+    <div id="error" class="banner" role="alert" hidden></div>
+  </div>
+
+  <div class="ctl" id="controls">
+    <div class="top">
+      <span id="period-label"><span id="period-prefix">Month:</span> <b id="month-label">–</b></span>
+      <div class="toggles">
+      <span class="seg" id="mode-toggle" data-key="mode" role="group" aria-label="Mode"><button type="button" class="on" data-value="month">Month</button><button type="button" data-value="cumulative">Cumulative since Apr 2024</button></span>
+      </div>
+    </div>
+    <input type="range" id="month" min="0" max="23" value="23" step="1" aria-labelledby="period-label">
+  </div>
+
+  <div class="dock" id="dock">
+    <div class="c" id="dock-1"><h5>Emission trend by month</h5><div class="cbody"></div></div>
+    <div class="c" id="dock-2"><h5>Top 10 villages</h5><div class="cbody"></div></div>
+    <div class="c" id="dock-3"><h5>Emission intensity (kg CO2e per kg grain)</h5><div class="cbody"></div></div>
+    <div class="c" id="dock-4"><h5>Reduction vs baseline · monthly and cumulative</h5><div class="cbody"></div></div>
+  </div>
+
+  <div id="loading" class="overlay">Loading data…</div>
+</main>
+<div id="guide" class="modal" hidden></div>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
