@@ -2,13 +2,13 @@
 
 **Explore the live dashboard: https://arsyadika.github.io/Carbon-Emissions-Dashboard/**
 
-No installation or login required. Open the link and start exploring.
+No installation, no login. Just open the link and start exploring.
 
 [![Carbon Dashboard preview](docs/preview.jpg)](https://arsyadika.github.io/Carbon-Emissions-Dashboard/)
 
 ## Overview
 
-Rice paddies are a major source of methane and nitrous oxide, yet their emissions are hard to see and compare. This dashboard turns farm-level records into a clear, village-level picture of greenhouse gas emissions from rice farming across **39 villages in Java, Indonesia**, from **April 2024 to March 2026**.
+Rice paddies release methane and nitrous oxide, but those emissions are rarely easy to see or compare. This dashboard brings farm records together into one clear picture: how much greenhouse gas rice farming produces across **39 villages in Java, Indonesia**, from **April 2024 to March 2026**, and how much lower it is when farmers adopt better practices.
 
 ## Headline results
 
@@ -39,11 +39,11 @@ Rice paddies are a major source of methane and nitrous oxide, yet their emission
 
 ## Data and privacy
 
-Data comes from two anonymised sources ("source A" and "source B") and is published only as village-level aggregates. No farmer-level or personal data is included.
+The numbers come from two anonymised sources ("source A" and "source B") and are shared only as village-level totals, so no individual farmer can be identified.
 
 ## Technical approach
 
-- A fully static site (HTML, CSS and ES modules) built on [MapLibre GL JS](https://maplibre.org/) and [Chart.js](https://www.chartjs.org/). It needs no server or database, so it loads fast and is simple to host.
+- A fully static site (HTML, CSS and ES modules) built on [MapLibre GL JS](https://maplibre.org/) and [Chart.js](https://www.chartjs.org/). With no server or database to maintain, it opens quickly and is easy to host anywhere.
 - Data is prepared offline with Python and shipped as static files in `data/`: `villages.geojson`, `meta.json` and `factors.json`.
 
 ```
